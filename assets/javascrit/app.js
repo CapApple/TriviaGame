@@ -13,7 +13,10 @@ var answers = [
     ["Turkey", "Norway", "Germany", "Israel"]
 ]
 var questionNumber = 0;
-var correctAnswer = answers[questionNumber][0];
+var right = 0;
+var wrong = 0;
+var timeOut = 0;
+// var correctAnswer = (answers[questionNumber])[0];
 function shuffle(arr){
     for(var i = arr.length-1; i--; i>=0){
         var index = Math.floor(Math.random()*i);
@@ -25,16 +28,17 @@ function shuffle(arr){
 
 function start(){
     var question = questions[questionNumber];
+    // var correctAnswer = (answers[questionNumber])[0];
     // get this quesiton's answer arrays and shuffle
     // THis will not work due to how JS memorize arrays and pbjects:
     // var thisAnswer = answers[questionNumber][i];
     var thisAnswers = [];
     for(i=0;i<4;i++){
-        thisAnswers.push(answers[questionNumber][i]);
+        thisAnswers.push((answers[questionNumber])[i]);
     }  
     shuffle(thisAnswers);
-    console.log(thisAnswers);
-    console.log(answers[questionNumber]);
+    console.log("WOO" + thisAnswers);
+    console.log("HOO" + answers[questionNumber]);
     $("h6").css("display", "block");
     $("#button").html("");
     $("#question").html(question);
@@ -47,29 +51,72 @@ function start(){
 }
 
 function countdown(){
+    // var correctAnswer = (answers[questionNumber])[0];
+    var userChoice = "";
     var timeLeft = 10;
+    var click = false;
     $(".time").text(timeLeft);
     var timer = setInterval(function(){
         timeLeft--;
         $(".time").text(timeLeft);
+        // if time runs out
         if(timeLeft === 0){
             clearInterval(timer);
-            answerIs();
+            $("ul").css("display", "none");
+            $("#answer").html("Time out! The answer is: <br><br>" + correctAnswer);
             questionNumber++;
+            timeOut++;
             setTimeout(function(){
-                start();
-                countdown();
+                newQuestion();
             }, 3000);
+        }
+        // if choose 
+        $("li").on("click",function(){
+            click = true;
+            userChoice = $(this).html();
+            console.log("clicked!");
+            console.log(userChoice);
+            console.log("HAHA" + correctAnswer);
+            return;
+        });
+
+        if(userChoice === correctAnswer && click === true){
+            console.log("Right!");
+            clearInterval(timer);
+            $("ul").css("display", "none");
+            $("#answer").html("Yep! The answer is: <br><br>" + correctAnswer + "!"); 
+            questionNumber++;
+            right++;
+            setTimeout(function(){
+                newQuestion();
+            }, 3000);
+        }
+        
+        if(click === true && userChoice != correctAnswer){
+            console.log("wrong!");
+            clearInterval(timer);
+            $("ul").css("display", "none");
+            $("#answer").html("Wrong! The answer is: <br><br>" + correctAnswer + "!"); 
+            questionNumber++;
+            wrong++;
+            setTimeout(function(){
+                newQuestion();
+            }, 3000);
+        }
+
+        if(questionNumber === questions.length){
+            $(".container").html("Game Over! Your Results: <br><br>" + right + " right<br>" + wrong + " wrong<br>" + timeOut + " time out")
         }
     }, 1000);
 }
 
-function answerIs(){
-    $("ul").css("display", "none");
-    $("#answer").html("Time out! The answer is: <br>" + answers[questionNumber][0]);
+
+function newQuestion(){
+    correctAnswer = (answers[questionNumber])[0];
+    start();
+    countdown();
 }
 
 $("#start").on("click", function(){
-    start();
-    countdown();
+    newQuestion();
 });
