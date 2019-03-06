@@ -3,14 +3,16 @@ var questions = [
     "What Christmas beverage is also known as 'milk punch?'",
     "What Christmas-themed ballet premiered in Saint Petersburg, Russia in 1892?",
     "What well-known Christmas carol became the first song ever broadcast from space in 1965?",
-    "In what modern-day country was Saint Nicholas born?"
+    "In what modern-day country was Saint Nicholas born?",
+    "\"Miracle on 34th Street\" centers on what real-life department store?"
 ]
 var answers = [
     ["An old silk hat", "An old cotton hat", "An old silk coat", "An old cotton coat"],
     ["Eggnog", "Milk", "Almod milk", "Coconut milk"],
     ["The Nutcracker", "Cinderella", "Swan Lake", "The Sleeping Beauty"],
     ["Jingle Bell", "Silent Night", "The Christmas Song", "Blue Christmas"],
-    ["Turkey", "Norway", "Germany", "Israel"]
+    ["Turkey", "Norway", "Germany", "Israel"],
+    ["Macy's", "Dilliards", "Nord Strom", "Neiman Marcus"]
 ]
 var questionNumber = 0;
 var right = 0;

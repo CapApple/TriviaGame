@@ -31,7 +31,7 @@ h6{
     box-shadow: 5px 5px 2px rgb(50,50,50);
     border-radius: 2px;
     width: 60%;
-    height: 480px;
+    height: 460px;
     text-align: center;
 }
 
@@ -63,6 +63,7 @@ ul{
 li{
     list-style-type: none;
     text-align: left;
+    margin-bottom: 10px;
 }
 
 li:hover{
@@ -84,3 +85,22 @@ li:hover{
     border: 2px solid rgb(60,100,60);
     box-shadow: 0 0 10px rgb(60,100,60);
 }
+
+@media screen and (max-width: 476px){
+    .container{
+        width: 90%;
+        margin-bottom: 30px;
+    }
+    li{
+        border: 2px solid rgb(60,100,60);
+        box-shadow: 0 0 5px rgb(60,100,60);
+    }
+    li:hover{
+        border: 2px solid rgb(60,100,60);
+        box-shadow: 0 0 5px rgb(60,100,60);
+    }
+    ul{
+        width: 65;
+    }
+    
+} 
