@@ -8,7 +8,7 @@ var questions = [
 ]
 var answers = [
     ["An old silk hat", "An old cotton hat", "An old silk coat", "An old cotton coat"],
-    ["Eggnog", "Milk", "Almod milk", "Coconut milk"],
+    ["Eggnog", "Milk", "Almond milk", "Coconut milk"],
     ["The Nutcracker", "Cinderella", "Swan Lake", "The Sleeping Beauty"],
     ["Jingle Bell", "Silent Night", "The Christmas Song", "Blue Christmas"],
     ["Turkey", "Norway", "Germany", "Israel"],
@@ -52,6 +52,13 @@ function start(){
     }
 }
 
+
+function newQuestion(){
+    correctAnswer = (answers[questionNumber])[0];
+    start();
+    countdown();
+}
+
 function countdown(){
     // var correctAnswer = (answers[questionNumber])[0];
     var userChoice = "";
@@ -89,6 +96,11 @@ function countdown(){
             $("#answer").html("Yep! The answer is: <br><br>" + correctAnswer + "!"); 
             questionNumber++;
             right++;
+            if(questionNumber === questions.length){
+                setTimeout(function(){
+                    $(".container").html("Game Over! Your Results: <br><br>" + right + " right<br>" + wrong + " wrong<br>" + timeOut + " time out");
+                },3000);
+            }
             setTimeout(function(){
                 newQuestion();
             }, 3000);
@@ -98,26 +110,21 @@ function countdown(){
             console.log("wrong!");
             clearInterval(timer);
             $("ul").css("display", "none");
-            $("#answer").html("Wrong! The answer is: <br><br>" + correctAnswer + "!"); 
+            $("#answer").html("Nope! The answer is: <br><br>" + correctAnswer + "!"); 
             questionNumber++;
             wrong++;
+            if(questionNumber === questions.length){
+                setTimeout(function(){
+                    $(".container").html("Game Over! Your Results: <br><br>" + right + " right<br>" + wrong + " wrong<br>" + timeOut + " time out");
+                },3000);
+            }
             setTimeout(function(){
                 newQuestion();
             }, 3000);
         }
-
-        if(questionNumber === questions.length){
-            $(".container").html("Game Over! Your Results: <br><br>" + right + " right<br>" + wrong + " wrong<br>" + timeOut + " time out")
-        }
     }, 1000);
 }
 
-
-function newQuestion(){
-    correctAnswer = (answers[questionNumber])[0];
-    start();
-    countdown();
-}
 
 $("#start").on("click", function(){
     newQuestion();
