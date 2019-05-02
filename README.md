@@ -9,6 +9,8 @@ In this project, I created a Christmas themed trivia game using bootstrap, JavaS
 
 2. In each new game, the questions will be displayed in a random order and the position of the correct choice for each question is not fixed. (eg. for a certain question, the correct choice this round appears at A, but will appear at B next round.) 
 
+3. Your results will be displayed at the end of the game. 
+
 
 ### Try the game yourself
 
